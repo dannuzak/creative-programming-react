@@ -45,27 +45,35 @@ const CanvasSketchComponent = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const settings = {
-      dimensions: [ 1080, 1080 ],
-      animate: true,
-      canvas: canvasRef.current
+    const resizeCanvas = () => {
+      if (canvasRef.current) {
+        canvasRef.current.width = window.innerWidth;
+        canvasRef.current.height = window.innerHeight;
+      }
     };
-
-   
+  
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  
+    const settings = {
+      dimensions: [window.innerWidth, window.innerHeight],
+      animate: true
+    };
+  
     const sketch = ({ context, width, height }) => {
       const agents = [];
-
+  
       for (let i = 0; i < 40; i++) {
         const x = random.range(0, width);
         const y = random.range(0, height);
-
+  
         agents.push(new Agent(x, y));
       }
-
+  
       return ({ context, width, height }) => {
-        context.fillStyle = 'white'; // set background color to black
+        context.fillStyle = "#2D647B";
         context.fillRect(0, 0, width, height);
-
+  
         agents.forEach(agent => {
           agent.update();
           agent.draw(context);
@@ -73,13 +81,18 @@ const CanvasSketchComponent = () => {
         });
       };
     };
-
-    canvasSketch(sketch, settings);
+  
+    setTimeout(() => {
+      if (canvasRef.current) {
+        settings.canvas = canvasRef.current;
+        canvasSketch(sketch, settings);
+      }
+    }, 0);
+    
+    return () => window.removeEventListener('resize', resizeCanvas);
   }, []);
 
-  return (
-    <canvas ref={canvasRef} />
-  );
+  return <canvas ref={canvasRef} />; // Add this line
 }
 
 export default CanvasSketchComponent;
