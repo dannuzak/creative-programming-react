@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "canvas-sketch-cli": "^1.11.21"
   }
 }
