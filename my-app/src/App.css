@@ -1,3 +1,41 @@
-canvas {
-  width: 100%;
+/* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: black solid 10px;
+} 
+
+.canvas {
+  display: block;
+  margin: 0 auto;
+  border: 10px solid black;
+} */
+/* 
+TODO: 
+
+- Add a border to the body element. The border should be black, solid, and 10px wide. 
+- Center the canvas element on the page.
+*/
+/* 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #fff;
+}
+
+.canvas {
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+} */
